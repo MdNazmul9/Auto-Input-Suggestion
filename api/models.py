@@ -30,7 +30,7 @@ class Country(models.Model):
     currencies_name = models.CharField(max_length=250, blank=True, null=True)
     currencies_symbol = models.CharField(max_length=250, blank=True, null=True)
 
-    continent = models.ForeignKey(Continent, blank=True, null=True, on_delete=models.CASCADE, related_name='country_continentList')
+    continent = models.ForeignKey(Continent, blank=True, null=True, on_delete=models.CASCADE, related_name='continent_countryList')
 
     def __str__(self):
         return self.name
