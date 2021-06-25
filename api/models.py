@@ -1,5 +1,10 @@
 from django.db import models
 
+'''
+Person, Continent, Country, State, Division, District, City, Road_or_Street_No, PoliceStation, PostOffice,PostCode_or_ZipCode, ThanaUpozila, Municipality, Union, WordNo, Village, Mahalla, Block, HoldingNo, House
+
+'''
+
 class Person(models.Model):
     name = models.CharField(max_length=250, blank=True, null=True)
     phone = models.CharField(max_length=250, blank=True, null=True)
