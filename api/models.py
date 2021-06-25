@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Continent(models.Model):
     name = models.CharField(max_length=250, blank=True, null=True)
     def __str__(self):
@@ -38,14 +39,14 @@ class Country(models.Model):
         
 class State(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    country= models.ForeignKey(Country, blank=True, null=True, related_name='state_countryList', on_delete=models.CASCADE)
+    country= models.ForeignKey(Country, blank=True, null=True, related_name='country_stateList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 class Division(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    state= models.ForeignKey(State, blank=True, null=True, related_name='division_stateList', on_delete=models.CASCADE)
-    country= models.ForeignKey(Country, blank=True, null=True, related_name='division_countryList', on_delete=models.CASCADE)
+    state= models.ForeignKey(State, blank=True, null=True, related_name='state_divisionList', on_delete=models.CASCADE)
+    country= models.ForeignKey(Country, blank=True, null=True, related_name='country_divisionList', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -53,105 +54,104 @@ class Division(models.Model):
 
 class District(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    division= models.ForeignKey(Division, blank=True, null=True, related_name='district_divisionList', on_delete=models.CASCADE)
-    country= models.ForeignKey(Country, blank=True, null=True, related_name='district_countryList', on_delete=models.CASCADE)
+    division= models.ForeignKey(Division, blank=True, null=True, related_name='division_districtList', on_delete=models.CASCADE)
+    country= models.ForeignKey(Country, blank=True, null=True, related_name='country_districtList', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
 class City(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district= models.ForeignKey(District, blank=True, null=True, related_name='city_districtList', on_delete=models.CASCADE)
-    state= models.ForeignKey(State, blank=True, null=True, related_name='city_stateList', on_delete=models.CASCADE)
-    country= models.ForeignKey(Country, blank=True, null=True, related_name='city_countryList', on_delete=models.CASCADE)
+    district= models.ForeignKey(District, blank=True, null=True, related_name='district_cityList', on_delete=models.CASCADE)
+    state= models.ForeignKey(State, blank=True, null=True, related_name='state_cityList', on_delete=models.CASCADE)
+    country= models.ForeignKey(Country, blank=True, null=True, related_name='country_cityList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 
 class Road_or_Street_No(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district= models.ForeignKey(District, blank=True, null=True, related_name='roadno_districtList', on_delete=models.CASCADE)
-    city= models.ForeignKey(City, blank=True, null=True, related_name='roadno_cityList', on_delete=models.CASCADE)
+    district= models.ForeignKey(District, blank=True, null=True, related_name='district_roadnoList', on_delete=models.CASCADE)
+    city= models.ForeignKey(City, blank=True, null=True, related_name='city_roadnoList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 
 class PoliceStation(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district= models.ForeignKey(District, blank=True, null=True, related_name='policeStation_districtList', on_delete=models.CASCADE)
-    city= models.ForeignKey(City, blank=True, null=True, related_name='policeStation_cityList', on_delete=models.CASCADE)
+    district= models.ForeignKey(District, blank=True, null=True, related_name='district_policeStationList', on_delete=models.CASCADE)
+    city= models.ForeignKey(City, blank=True, null=True, related_name='city_policeStationList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 
-
 class PostOffice(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district= models.ForeignKey(District, blank=True, null=True, related_name='postoffice_districtList', on_delete=models.CASCADE)
-    city= models.ForeignKey(City, blank=True, null=True, related_name='postoffice_cityList', on_delete=models.CASCADE)
+    district= models.ForeignKey(District, blank=True, null=True, related_name='_distric_postofficetList', on_delete=models.CASCADE)
+    city= models.ForeignKey(City, blank=True, null=True, related_name='city_postofficeList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 class PostCode_or_ZipCode(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district= models.ForeignKey(District, blank=True, null=True, related_name='zipcode_districtList', on_delete=models.CASCADE)
-    city= models.ForeignKey(City, blank=True, null=True, related_name='zipcode_cityList', on_delete=models.CASCADE)
+    district= models.ForeignKey(District, blank=True, null=True, related_name='district_zipcodeList', on_delete=models.CASCADE)
+    city= models.ForeignKey(City, blank=True, null=True, related_name='city_zipcodeList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 class ThanaUpozila(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district= models.ForeignKey(District, blank=True, null=True, related_name='thana_districtList', on_delete=models.CASCADE)
-    city= models.ForeignKey(City, blank=True, null=True, related_name='thana_cityList', on_delete=models.CASCADE)
+    district= models.ForeignKey(District, blank=True, null=True, related_name='district_thanaList', on_delete=models.CASCADE)
+    city= models.ForeignKey(City, blank=True, null=True, related_name='city_thanaList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 class Municipality(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    thana = models.ForeignKey(ThanaUpozila, blank=True, null=True, related_name='municipality_ThanaList', on_delete=models.CASCADE)
+    thana = models.ForeignKey(ThanaUpozila, blank=True, null=True, related_name='thana_municipalityList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 class Union(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    thana = models.ForeignKey(ThanaUpozila, blank=True, null=True, related_name='union_ThanaList', on_delete=models.CASCADE)
+    thana = models.ForeignKey(ThanaUpozila, blank=True, null=True, related_name='thana_unionList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 class WordNo(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    thana = models.ForeignKey(ThanaUpozila, blank=True, null=True, related_name='wordno_ThanaList', on_delete=models.CASCADE)
+    thana = models.ForeignKey(ThanaUpozila, blank=True, null=True, related_name='Thana_wordnoList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 
 class Village(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    union = models.ForeignKey(Union, blank=True, null=True, related_name='village_unionList', on_delete=models.CASCADE)
-    municipality = models.ForeignKey(Municipality, blank=True, null=True, related_name='village_municipalityList', on_delete=models.CASCADE)
+    union = models.ForeignKey(Union, blank=True, null=True, related_name='union_villageList', on_delete=models.CASCADE)
+    municipality = models.ForeignKey(Municipality, blank=True, null=True, related_name='municipality_villageList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 class Mahalla(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    village = models.ForeignKey(Village, blank=True, null=True, related_name='mahalla_villageList', on_delete=models.CASCADE)
+    village = models.ForeignKey(Village, blank=True, null=True, related_name='village_mahallaList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 class Block(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    village = models.ForeignKey(Village, blank=True, null=True, related_name='block_villageList', on_delete=models.CASCADE)
+    village = models.ForeignKey(Village, blank=True, null=True, related_name='village_blockList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
 
 class HoldingNo(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    village = models.ForeignKey(Village, blank=True, null=True, related_name='holdingNo_villageList', on_delete=models.CASCADE)
+    village = models.ForeignKey(Village, blank=True, null=True, related_name='village_holdingNoList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 class House(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    village = models.ForeignKey(Village, blank=True, null=True, related_name='house_villageList', on_delete=models.CASCADE)
+    village = models.ForeignKey(Village, blank=True, null=True, related_name='village_houseList', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
