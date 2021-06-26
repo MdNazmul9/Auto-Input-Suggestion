@@ -6,9 +6,9 @@ Person, Continent, Country, State, Division, District, City, Road_or_Street_No, 
 '''
 
 class Person(models.Model):
-    name = models.CharField(max_length=250, blank=True, null=True)
-    phone = models.CharField(max_length=250, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
+    name = models.CharField(max_length=250)
+    phone = models.CharField(max_length=250)
+    email = models.EmailField(blank=True)
 
     continent = models.CharField(max_length=250, blank=True, null=True)
     country = models.CharField(max_length=250, blank=True, null=True)

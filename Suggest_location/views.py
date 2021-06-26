@@ -18,8 +18,16 @@ def IndexView(request):
             continent = form.cleaned_data['continent']
             country = form.cleaned_data['country']
             district = form.cleaned_data['district']
-            print("Name:", name,"Phone:",phone,"email:", email,"continent:",continent,"country:", country,"district:",district )
-        
+            city = form.cleaned_data['city']
+            # print("Name:", name,"Phone:",phone,"email:", email,"continent:",continent,"country:", country,"district:",district )
+            if district!= None:
+                if not District.objects.filter(name=district).exists():
+                    district_obj = District(name=district)
+                    district_obj.save()
+            if city!= None:       
+                if not City.objects.filter(name=city).exists():
+                    city_obj = City(name=city)
+                    city_obj.save()
             # redirect to a new URL:
             # return HttpResponseRedirect('/thanks/')
             

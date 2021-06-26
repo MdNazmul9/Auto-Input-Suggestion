@@ -49,8 +49,6 @@ class PersonForm(forms.ModelForm):
         _block_set = kwargs.pop('block_set', None)
         _holdingNo_set = kwargs.pop('holdingNo_set', None)
         _house_set = kwargs.pop('house_set', None)
-       
-        
         super(PersonForm, self).__init__(*args, **kwargs) 
         self.fields['continent'].widget = ListTextWidget(data_list=_continent_set,name='continent_set')
         self.fields['country'].widget = ListTextWidget(data_list=_country_set,name='country_set')

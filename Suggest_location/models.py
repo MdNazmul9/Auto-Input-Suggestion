@@ -11,7 +11,7 @@ class Person(models.Model):
     country = models.CharField(max_length=250, blank=True, null=True)
     state = models.CharField(max_length=250, blank=True, null=True)
     division = models.CharField(max_length=250, blank=True, null=True)
-    district = models.CharField(max_length=250, blank=True, null=True)
+    district = models.CharField(max_length=250, blank=True)
     city = models.CharField(max_length=250, blank=True, null=True)
     road_or_streetNo = models.CharField(max_length=250, blank=True, null=True)
     policestation = models.CharField(max_length=250, blank=True, null=True)
@@ -82,7 +82,7 @@ class PostCode_or_ZipCode(models.Model):
     name = models.CharField(max_length=250, blank=True, null=True)
     def __str__(self):
         return self.name
-        
+
 class ThanaUpozila(models.Model):
     name = models.CharField(max_length=250, blank=True, null=True)
     def __str__(self):
