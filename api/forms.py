@@ -5,7 +5,7 @@ class PersonForm(forms.ModelForm):
     class Meta:
         model = Person 
         fields = [
-            'name','phone','email', 'continent', 'country','district'
+            'name','phone','email', 'continent', 'country','district',
         ]
 
         widgets = {

@@ -69,7 +69,7 @@ class Country(models.Model):
         return self.name
 
 
-        
+       
 class State(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     country= models.ForeignKey(Country, blank=True, null=True, related_name='country_stateList', on_delete=models.CASCADE)
