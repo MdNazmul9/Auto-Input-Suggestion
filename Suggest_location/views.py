@@ -12,14 +12,80 @@ def IndexView(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
+            
             name = form.cleaned_data['name']
             phone = form.cleaned_data['phone']
             email = form.cleaned_data['email']
             continent = form.cleaned_data['continent']
             country = form.cleaned_data['country']
+            state = form.cleaned_data['state']
+            division = form.cleaned_data['division']
             district = form.cleaned_data['district']
             city = form.cleaned_data['city']
-            # print("Name:", name,"Phone:",phone,"email:", email,"continent:",continent,"country:", country,"district:",district )
+            road_or_streetNo =form.cleaned_data['road_or_streetNo']
+            policestation =form.cleaned_data['policestation']
+            postoffice =form.cleaned_data['postoffice']
+            zipcode =form.cleaned_data['zipcode']
+            upozila_thana =form.cleaned_data['upozila_thana']
+            municipality =form.cleaned_data['municipality']
+            union =form.cleaned_data['union']
+            word_no =form.cleaned_data['word_no']
+            village =form.cleaned_data['village']
+            mahalla =form.cleaned_data['mahalla']
+            block =form.cleaned_data['block']
+            holdingNo =form.cleaned_data['holdingNo']
+            house =form.cleaned_data['house']
+
+            person = Person(
+                name = name,
+                phone = phone,
+                email = email,
+                continent = continent,
+                country = country,
+                state = state,
+                division = division,
+                district = district,
+                city = city,
+                road_or_streetNo = road_or_streetNo,
+                policestation = policestation,
+                postoffice = postoffice,
+                zipcode = zipcode,
+                upozila_thana =upozila_thana,
+                municipality =municipality,
+                union = union,
+                word_no = word_no,
+                village = village,
+                mahalla = mahalla,
+                block =block,
+                holdingNo =holdingNo,
+                house =house,
+            )
+            person.save()
+
+            # person.name = form.cleaned_data['name']
+            # person.phone = form.cleaned_data['phone']
+            # person.email = form.cleaned_data['email']
+            # person.continent = form.cleaned_data['continent']
+            # person.country = form.cleaned_data['country']
+            # person.state = form.cleaned_data['state']
+            # person.division = form.cleaned_data['division']
+            # person.district = form.cleaned_data['district']
+            # person.city = form.cleaned_data['city']
+            # person.road_or_streetNo =form.cleaned_data['road_or_streetNo']
+            # person.policestation =form.cleaned_data['policestation']
+            # person.postoffice =form.cleaned_data['postoffice']
+            # person.zipcode =form.cleaned_data['zipcode']
+            # person.upozila_thana =form.cleaned_data['upozila_thana']
+            # person.municipality =form.cleaned_data['municipality']
+            # person.union =form.cleaned_data['union']
+            # person.word_no =form.cleaned_data['word_no']
+            # person.village =form.cleaned_data['village']
+            # person.mahalla =form.cleaned_data['mahalla']
+            # person.block =form.cleaned_data['block']
+            # person.holdingNo =form.cleaned_data['holdingNo']
+            # person.house =form.cleaned_data['house']
+
+
             if district!= None:
                 if not District.objects.filter(name=district).exists():
                     district_obj = District(name=district)

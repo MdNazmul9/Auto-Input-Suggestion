@@ -55,10 +55,9 @@ class Country(models.Model):
     currencies = models.TextField(blank=True, null=True)
     languages = models.TextField(blank=True, null=True)
     flag = models.CharField(max_length=250, blank=True, null=True)
-
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
-    
+ 
     currencies_code = models.CharField(max_length=250, blank=True, null=True)
     currencies_name = models.CharField(max_length=250, blank=True, null=True)
     currencies_symbol = models.CharField(max_length=250, blank=True, null=True)
