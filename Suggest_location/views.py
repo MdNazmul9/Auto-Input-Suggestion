@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import PersonForm
-from .models import District
+from .models import District, Country, Continent
 
 # Create your views here.
 def IndexView(request):
@@ -26,7 +26,7 @@ def IndexView(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = PersonForm(district_set = District.objects.all().order_by("name"))
+        form = PersonForm(district_set = District.objects.all().order_by("name"),country_set = Country.objects.all().order_by("name"),continent_set = Continent.objects.all().order_by("name"))
 
 
     return render(request, 'index.html', context={'form': form})
