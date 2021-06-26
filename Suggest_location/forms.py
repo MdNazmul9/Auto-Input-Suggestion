@@ -1,10 +1,12 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Person
+from .fields import ListTextWidget
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person 
         fields = [
+            # 'name','phone','email', 'continent', 'country'
             'name','phone','email', 'continent', 'country','district'
         ]
 
@@ -15,7 +17,8 @@ class PersonForm(forms.ModelForm):
             # 'continent': forms.TextInput(attrs={'class':'form-control','required':''}),
             'continent': forms.Select(attrs={'class' : 'select2 form-control'}),
             'country': forms.Select(attrs={'class' : 'select2 form-control'}),
-            'district': forms.TextInput(attrs={'class':'form-control','required':''}),
+            # 'district': forms.Select(attrs={'class' : 'select2 form-control'}),
+            # 'district': forms.TextInput(attrs={'class':'form-control','required':''}),
             
             # 'city': forms.TextInput(attrs={'class':'form-control','required':''}),
             # 'division': forms.TextInput(attrs={'class':'form-control','required':''}),
@@ -24,4 +27,12 @@ class PersonForm(forms.ModelForm):
             # 'shop_city': forms.Select(attrs={'class' : 'select2 form-control'}),
             
         }
+    def __init__(self, *args, **kwargs):
+        _district_set = kwargs.pop('district_set', None)
+        _district_set = kwargs.pop('district_set', None)
+        super(PersonForm, self).__init__(*args, **kwargs) 
+        self.fields['district'].widget = ListTextWidget(data_list=_district_set,name='district_set')
+        self.fields['district'].widget = ListTextWidget(data_list=_district_set,name='district_set')
+
+
     
