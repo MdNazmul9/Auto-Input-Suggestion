@@ -92,7 +92,7 @@ def IndexView(request):
 
             if division!= None:       
                 if not Division.objects.filter(name=division).exists():
-                    division_obj = City(name=division)
+                    division_obj = Division(name=division)
                     division_obj.save()
 
 
