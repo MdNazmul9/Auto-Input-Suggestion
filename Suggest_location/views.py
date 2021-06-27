@@ -85,18 +85,96 @@ def IndexView(request):
             # person.holdingNo =form.cleaned_data['holdingNo']
             # person.house =form.cleaned_data['house']
 
+            if state!= None:
+                if not State.objects.filter(name=state).exists():
+                    state_obj = State(name=state)
+                    state_obj.save()
+
+            if division!= None:       
+                if not Division.objects.filter(name=division).exists():
+                    division_obj = City(name=division)
+                    division_obj.save()
+
 
             if district!= None:
                 if not District.objects.filter(name=district).exists():
                     district_obj = District(name=district)
                     district_obj.save()
+
             if city!= None:       
                 if not City.objects.filter(name=city).exists():
                     city_obj = City(name=city)
                     city_obj.save()
-            # redirect to a new URL:
-            # return HttpResponseRedirect('/thanks/')
+
             
+            if road_or_streetNo != None:       
+                if not Road_or_Street_No.objects.filter(name=road_or_streetNo).exists():
+                    road_or_streetNo_obj = Road_or_Street_No(name=road_or_streetNo)
+                    road_or_streetNo_obj.save()
+
+           
+            if policestation != None:       
+                if not PoliceStation.objects.filter(name=policestation).exists():
+                    policestation_obj = PoliceStation(name=policestation)
+                    policestation_obj.save()
+
+
+            if postoffice != None:       
+                if not PostOffice.objects.filter(name=postoffice).exists():
+                    postoffice_obj = PostOffice(name=postoffice)
+                    postoffice_obj.save()
+            
+            if zipcode != None:       
+                if not PostCode_or_ZipCode.objects.filter(name=zipcode).exists():
+                    zipcode_obj = PostCode_or_ZipCode(name=zipcode)
+                    zipcode_obj.save()
+
+            if upozila_thana != None:       
+                if not ThanaUpozila.objects.filter(name=upozila_thana).exists():
+                    upozila_thana_obj = ThanaUpozila(name=upozila_thana)
+                    upozila_thana_obj.save()
+
+
+            if municipality != None:       
+                if not Municipality.objects.filter(name=municipality).exists():
+                    municipality_obj = Municipality(name=municipality)
+                    municipality_obj.save()
+            
+            if union != None:       
+                if not Union.objects.filter(name=road_or_streetNo).exists():
+                    union_obj = Union(name=road_or_streetNo)
+                    union_obj.save()
+            
+            if word_no != None:       
+                if not WordNo.objects.filter(name=word_no).exists():
+                    word_no_obj = WordNo(name=word_no)
+                    word_no_obj.save()
+
+            if village != None:       
+                if not Village.objects.filter(name=village).exists():
+                    village_obj = Village(name=village)
+                    village_obj.save()
+
+
+            if mahalla != None:       
+                if not Mahalla.objects.filter(name=mahalla).exists():
+                    mahalla_obj = Mahalla(name=mahalla)
+                    mahalla_obj.save()
+
+            if block != None:       
+                if not Block.objects.filter(name=block).exists():
+                    block_obj = Block(name=block)
+                    block_obj.save()
+
+            if holdingNo != None:       
+                if not HoldingNo.objects.filter(name=holdingNo).exists():
+                    holdingNo_obj = HoldingNo(name=holdingNo)
+                    holdingNo_obj.save()
+            
+            if house != None:       
+                if not House.objects.filter(name=house).exists():
+                    house_obj = House(name=house)
+                    house_obj.save()
 
             return HttpResponse("Success!")
 
